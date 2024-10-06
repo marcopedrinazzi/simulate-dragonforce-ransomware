@@ -1,0 +1,1 @@
+Write-Host "Command and Scripting Interpreter: PowerShell (T1059.001) works! o.o"
