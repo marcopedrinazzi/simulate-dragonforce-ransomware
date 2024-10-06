@@ -1,7 +1,7 @@
 # Simulate DragonForce Ransomware with Atomic RedTeam
-This is a simple but effective intelligence led simulation of the DragonForce Ransomware TTPs with [AtomicRedTeam](https://atomicredteam.io/). This work is based on the blog post of GROUP-IB available [here](https://www.group-ib.com/blog/dragonforce-ransomware/). First of all, I wanna thank [@skandler](https://github.com/skandler), I read his great blog post about [Simulating an Akira Ransomware Attack with Atomic Red Team](https://detect.fyi/simulating-a-akira-ransomware-attack-with-atomic-red-team-9e9d66e7bf60) and I was inspired to create something similar. I followed the same approach that he used and took the core structure of the powershell script that he created and applied it in the scenario of this simulation.
+This is a simple but effective intelligence led simulation of the DragonForce Ransomware TTPs (Tactics, Techniques, and Procedures) with [AtomicRedTeam](https://atomicredteam.io/). This work is based on the blog post of GROUP-IB available [here](https://www.group-ib.com/blog/dragonforce-ransomware/). First of all, I wanna thank [@skandler](https://github.com/skandler), I read his great blog post about [Simulating an Akira Ransomware Attack with Atomic Red Team](https://detect.fyi/simulating-a-akira-ransomware-attack-with-atomic-red-team-9e9d66e7bf60) and I was inspired to create something similar. I followed the same approach that he used and took the core structure of the powershell script that he created and applied it in the scenario of this simulation.
 
-The goal of this project is to simulate the DrafonForce Ransomware TTPs and test the detection capabilities deployed in an environment against well-known Threat Actor's TTPs. 
+The goal of this project is to simulate the DrafonForce Ransomware TTPs and test the detection capabilities deployed in an environment against well-known adversarial TTPs. 
 
 Any kind of criticism and feedback is very welcomed and appreciated as this was my first time doing an intelligence led simulation :)
 
@@ -14,8 +14,6 @@ Before executing the script remember:
 
 ##  What is DragonForce?
 > DragonForce operates a Ransomware-as-a-Service (RaaS) affiliate program utilizing a variant of LockBit3.0, and the other, though initially claimed as original, is based on ContiV3. The group employs double extortion tactics, encrypting data, and threatening leaks unless a ransom is paid.
->
-> &mdash; <cite>GROUP-IB blog post</cite>
 
 Below the TTPs, I added some TTPs which I felt were missing from the table published by GROUP-IB in its blog post but were described in the blog post's sections.
 
@@ -25,7 +23,7 @@ Below the TTPs, I added some TTPs which I felt were missing from the table publi
 | Execution          | Command and Scripting Interpreter: PowerShell (T1059.001) | PowerShell is used to download and execute malicious payloads like Cobalt Strike. |   Developed  a custom test  |
 | Execution          | Inter-Process Communication (T1559) | I added this technique to simulate the usage of Cobalt Strike mentioned in the blog post GROUP-IB|   [Atomic Test Reference #1](https://atomicredteam.io/execution/T1559/#atomic-test-1---cobalt-strike-artifact-kit-pipe) [Atomic Test Reference #2](https://atomicredteam.io/execution/T1559/#atomic-test-2---cobalt-strike-lateral-movement-psexec_psh-pipe) [Atomic Test Reference #3](https://atomicredteam.io/execution/T1559/#atomic-test-3---cobalt-strike-ssh-postex_ssh-pipe) [Atomic Test Reference #4](https://atomicredteam.io/execution/T1559/#atomic-test-4---cobalt-strike-post-exploitation-pipe-42-and-later) |
 | Persistence        | Valid Accounts: Domain Accounts (T1078.002)          | Maintaining access by using compromised domain accounts.                    |   Not implemented. See below (2)    |
-| Persistence        | Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder (T1547.001) | Registry keys are created to ensure malware execution at startup.          |    [Atomic Red Team Reference](https://atomicredteam.io/privilege-escalation/T1547.001/#atomic-test-1---reg-key-run) |
+| Persistence        | Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder (T1547.001) | Registry keys are created to ensure malware execution at startup.          |    [Atomic Test Reference](https://atomicredteam.io/privilege-escalation/T1547.001/#atomic-test-1---reg-key-run) |
 | Persistence        | Create or Modify System Process: Windows Service (T1543.003) | SystemBC creates services for persistence.                                  |   [Atomic Test Reference](https://atomicredteam.io/privilege-escalation/T1543.003/#atomic-test-2---service-installation-cmd)   |
 | Defense Evasion    | Impair Defenses: Disable or Modify Tools (T1562.001) | I added this technique by reading the GROUP-IB blogpost, the reference is "Antivirus features were disabled"   |    [Atomic Test Reference](https://atomicredteam.io/defense-evasion/T1562.001/#atomic-test-16---tamper-with-windows-defender-atp-powershell)   |
 | Credential Access  | OS Credential Dumping: LSASS Memory (T1003.001)      | Mimikatz is used to dump credentials from LSASS memory.                     |   [Atomic Test Reference](https://atomicredteam.io/credential-access/T1003.001/#atomic-test-6---offline-credential-theft-with-mimikatz)    |
