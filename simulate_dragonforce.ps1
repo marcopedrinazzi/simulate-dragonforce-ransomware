@@ -55,18 +55,18 @@ Invoke-AtomicTest T1547.001 -TestNumbers 1
 # SystemBC creates services for persistence.
 # Remember to set the parameters https://atomicredteam.io/privilege-escalation/T1543.003/#atomic-test-2---service-installation-cmd
 Invoke-AtomicTest T1543.003 -TestNumbers 2 -GetPrereqs
-Invoke-AtomicTest T1069.002 -TestNumbers 2
+Invoke-AtomicTest T1543.003 -TestNumbers 2
 
 # Atomic Test - Impair Defenses: Disable or Modify Tools (T1562.001)
 # I added this technique by reading the GROUP-IB blogpost, the reference is "Antivirus features were disabled"
 # https://atomicredteam.io/defense-evasion/T1562.001/#atomic-test-16---tamper-with-windows-defender-atp-powershell
-Invoke-AtomicTest T1482 -TestNumbers 15
+Invoke-AtomicTest T1562.001 -TestNumbers 16
 
 # Atomic Test - OS Credential Dumping: LSASS Memory (T1003.001)
 # Mimikatz is used to dump credentials from LSASS memory.
 # Remember to set the parameters https://atomicredteam.io/credential-access/T1003.001/#atomic-test-6---offline-credential-theft-with-mimikatz
-Invoke-AtomicTest T1543.003 -TestNumbers 6 -GetPrereqs
-Invoke-AtomicTest T1069.002 -TestNumbers 6
+Invoke-AtomicTest T1003.001 -TestNumbers 6 -GetPrereqs
+Invoke-AtomicTest T1003.001 -TestNumbers 6
 
 # Atomic Test - System Network Configuration Discovery (T1016)
 # Network configuration details are collected by the attackers.
@@ -93,7 +93,7 @@ Invoke-AtomicTest T1082 -TestNumbers 1
 # Atomic Test - File and Directory Discovery (T1083)
 # Attackers explore directories and files for valuable data.
 # https://atomicredteam.io/discovery/T1083/#atomic-test-2---file-and-directory-discovery-powershell
-Invoke-AtomicTest T1555.003 -TestNumbers 2
+Invoke-AtomicTest T1083 -TestNumbers 2
 
 # Atomic Test - Remote Services: Remote Desktop Protocol (T1021.001)
 # RDP is used for lateral movement within the network.
